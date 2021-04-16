@@ -2,9 +2,6 @@
 
 namespace cmath10\Mapper;
 
-use cmath10\Mapper\FieldAccessor\PropertyPathAccessor;
-use ReflectionClass;
-
 final class DefaultMap extends AbstractMap
 {
     private string $sourceType;
@@ -26,14 +23,5 @@ final class DefaultMap extends AbstractMap
     public function getDestinationType(): string
     {
         return $this->destinationType;
-    }
-
-    public function route(string $destinationMember, string $sourceMember): MapInterface
-    {
-        $this->fieldAccessors[$destinationMember] = new PropertyPathAccessor(
-            $this->getPropertyPath($sourceMember)
-        );
-
-        return $this;
     }
 }
