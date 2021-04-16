@@ -2,7 +2,7 @@
 
 namespace cmath10\Mapper\FieldAccessor;
 
-use cmath10\Mapper\Exception\InvalidSourceProperty;
+use cmath10\Mapper\Exception\InvalidSourcePropertyException;
 use Exception;
 use Symfony\Component\ExpressionLanguage\Expression;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
@@ -34,7 +34,7 @@ final class ExpressionAccessor implements AccessorInterface
         } catch (Exception $e) {
             if (!$this->matches('/Unable to get property ".*" of non-object/', $e)) {
                 if ($this->matches('/Variable ".*" is not valid/', $e)) {
-                    throw new InvalidSourceProperty('Property path "'.$this->expression.'" is invalid');
+                    throw new InvalidSourcePropertyException('Property path "'.$this->expression.'" is invalid');
                 }
 
                 throw $e;

@@ -2,7 +2,7 @@
 
 namespace cmath10\Mapper\Tests\FieldAccessor;
 
-use cmath10\Mapper\Exception\InvalidSourceProperty;
+use cmath10\Mapper\Exception\InvalidSourcePropertyException;
 use cmath10\Mapper\FieldAccessor\ExpressionAccessor;
 use PHPUnit\Framework\TestCase;
 use stdClass;
@@ -33,7 +33,7 @@ final class ExpressionAccessorTest extends TestCase
 
     public function testAccessFail(): void
     {
-        $this->expectException(InvalidSourceProperty::class);
+        $this->expectException(InvalidSourcePropertyException::class);
 
         $accessor = new ExpressionAccessor('friends.details.name');
 

@@ -3,17 +3,17 @@
 namespace cmath10\Mapper;
 
 use cmath10\Mapper\Exception\InvalidClassConstructorException;
+use cmath10\Mapper\Exception\UnsupportedDestinationTypeException;
+use cmath10\Mapper\Exception\UnsupportedSourceTypeException;
 use cmath10\Mapper\FieldAccessor\PropertyPathAccessor;
 use cmath10\Mapper\FieldFilter\AbstractMappingFilter;
 use ArrayAccess;
-use LogicException;
 use ReflectionClass;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
 use function is_array;
 use function is_null;
 use function is_string;
-use function sprintf;
 
 final class Mapper implements MapperInterface
 {
@@ -105,20 +105,14 @@ final class Mapper implements MapperInterface
         return $destination;
     }
 
-    private function get(string $sourceType, string $destinationType): AbstractMap
+    private function get(string $sourceType, string $destinationType): MapInterface
     {
         if (!isset($this->maps[$sourceType])) {
-            throw new LogicException(sprintf(
-                'There is no map that support this source type: %s',
-                $sourceType
-            ));
+            throw new UnsupportedSourceTypeException($sourceType);
         }
 
         if (!isset($this->maps[$sourceType][$destinationType])) {
-            throw new LogicException(sprintf(
-                'There is no map that support this destination type: %s',
-                $destinationType
-            ));
+            throw new UnsupportedDestinationTypeException($destinationType);
         }
 
         return $this->maps[$sourceType][$destinationType];
