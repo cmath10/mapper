@@ -23,7 +23,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "cmath10\\Mapper\\Tests\\": "tests"
+            "cmath10\\Mapper\\Tests\\": "tests/"
         }
     },
     "scripts": {
