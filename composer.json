@@ -13,6 +13,7 @@
         "symfony/expression-language": "^4.4 || ^5.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
         "phpunit/phpunit": "^9.5"
     },
     "autoload": {
@@ -24,6 +25,13 @@
         "psr-4": {
             "cmath10\\Mapper\\Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "check": [
+            "@cs"
+        ],
+        "cs": "php-cs-fixer fix -v --using-cache=no --dry-run",
+        "cs-fix": "php-cs-fixer fix -v --using-cache=no"
     },
     "config": {
         "sort-packages": true

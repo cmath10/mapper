@@ -118,4 +118,3 @@ final class Mapper implements MapperInterface
         return $this->maps[$sourceType][$destinationType];
     }
 }
-

@@ -10,10 +10,10 @@ final class ObjectArrayMappingFilter extends AbstractMappingFilter
     public function filter($value): array
     {
         if (is_array($value)) {
-            $objectFilter = new ObjectMappingFilter($this->className);
-            $objectFilter->setMapper($this->getMapper());
+            $filter = new ObjectMappingFilter($this->className);
+            $filter->setMapper($this->getMapper());
 
-            $mapFn = static fn($item) => $objectFilter->filter($item);
+            $mapFn = static fn ($item) => $filter->filter($item);
 
             return array_map($mapFn, $value);
         }

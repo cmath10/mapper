@@ -78,7 +78,7 @@ final class MapperTest extends TestCase
         $mapper = new Mapper();
         $mapper
             ->create(Fixtures\Article::class, Fixtures\ArticleOutput::class)
-            ->forMember('author', new ClosureAccessor(fn(Fixtures\Article $a) => $a->author->name))
+            ->forMember('author', new ClosureAccessor(fn (Fixtures\Article $a) => $a->author->name))
         ;
 
         $mapper->map($article, $output);
@@ -129,7 +129,7 @@ final class MapperTest extends TestCase
         $mapper = new Mapper();
         $mapper
             ->create(Fixtures\ArticleInput::class, Fixtures\Article::class)
-            ->filter('title', new ClosureFilter(static fn($title) => '[[' . $title . ']]'))
+            ->filter('title', new ClosureFilter(static fn ($title) => '[[' . $title . ']]'))
         ;
 
         $mapper->map($input, $article);
