@@ -32,9 +32,9 @@ final class Mapper implements MapperInterface
         $this->guesser = new TypeGuesser($typeFilters);
     }
 
-    public function create(string $sourceType, string $destinationMap): MapInterface
+    public function create(string $sourceType, string $destinationType): MapInterface
     {
-        return $this->maps[$sourceType][$destinationMap] = new DefaultMap($sourceType, $destinationMap);
+        return $this->maps[$sourceType][$destinationType] = new DefaultMap($sourceType, $destinationType);
     }
 
     public function register(MapInterface $map): void
