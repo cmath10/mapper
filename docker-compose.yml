@@ -3,11 +3,19 @@ services:
   php:
     container_name: cmath10-mapper-php
     build: docker/services/php
+    volumes:
+      - ./:/var/www/mapper
+      - ./docker/services/php/php.ini:/usr/local/etc/php/conf.d/docker-php-override.ini
+      - ./docker/services/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+
+  php-debug:
+    container_name: cmath10-mapper-php-debug
+    build: docker/services/php
     environment:
       PHP_IDE_CONFIG: "serverName=cmath10/mapper"
       XDEBUG_CONFIG: client_host=${XDEBUG_CLIENT_HOST}
     volumes:
       - ./:/var/www/mapper
       - ./docker/services/php/php.ini:/usr/local/etc/php/conf.d/docker-php-override.ini
+      - ./docker/services/php/php-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-override-xdebug.ini
       - ./docker/services/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
-      - $SSH_AUTH_SOCK:/ssh-auth.sock

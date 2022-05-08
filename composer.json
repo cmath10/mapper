@@ -28,9 +28,9 @@
     },
     "scripts": {
         "check": [
-            "@cs"
+            "@cs-check"
         ],
-        "cs": "php-cs-fixer fix -v --using-cache=no --dry-run",
+        "cs-check": "php-cs-fixer fix -v --using-cache=no --dry-run",
         "cs-fix": "php-cs-fixer fix -v --using-cache=no"
     },
     "config": {
