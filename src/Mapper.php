@@ -17,6 +17,9 @@ use function is_string;
 
 final class Mapper implements MapperInterface
 {
+    /**
+     * @var MapInterface[][]
+     */
     private array $maps = [];
 
     private PropertyAccessor $accessor;
