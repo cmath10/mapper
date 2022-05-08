@@ -93,7 +93,7 @@ final class Mapper implements MapperInterface
                 $value = $filter->filter($value);
             }
 
-            if ($map->getSkipNull() && is_null($value)) {
+            if (is_null($value) && $map->getSkipNull()) {
                 continue;
             }
 
