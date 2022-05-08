@@ -16,6 +16,7 @@ abstract class AbstractMap implements MapInterface
     /** @var FilterInterface[] */
     protected array $fieldFilters = [];
 
+    /** @var string[] */
     protected array $fieldRoutes = [];
 
     protected bool $overwriteIfSet = true;
@@ -45,7 +46,7 @@ abstract class AbstractMap implements MapInterface
     /**
      * Sets whether to overwrite the destination value if it is already set.
      *
-     * @param $value
+     * @param bool $value
      * @return $this
      */
     public function setOverwriteIfSet(bool $value): self
@@ -97,12 +98,6 @@ abstract class AbstractMap implements MapInterface
         return $this;
     }
 
-    /**
-     * Ignore the destination field.
-     *
-     * @param string $destinationMember
-     * @return AbstractMap
-     */
     public function ignoreMember(string $destinationMember): MapInterface
     {
         unset($this->fieldAccessors[$destinationMember]);
@@ -114,7 +109,7 @@ abstract class AbstractMap implements MapInterface
      * @return $this
      * @throws ReflectionException
      */
-    public function setupDefaults(): MapInterface
+    protected function setupDefaults(): self
     {
         $reflection = new ReflectionClass($this->getDestinationType());
 

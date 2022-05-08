@@ -27,6 +27,12 @@ interface MapInterface
      */
     public function getFieldFilters(): array;
 
+    public function getFieldRoutes(): array;
+
+    public function getOverwriteIfSet(): bool;
+
+    public function getSkipNull(): bool;
+
     /**
      * Associate a member to another member given their property paths.
      *
@@ -54,4 +60,12 @@ interface MapInterface
      * @return $this Current instance of map
      */
     public function filter(string $destinationMember, FilterInterface $fieldFilter): self;
+
+    /**
+     * Removes the destination field from accounting, so it will not be filled.
+     *
+     * @param string $destinationMember
+     * @return AbstractMap
+     */
+    public function ignoreMember(string $destinationMember): self;
 }

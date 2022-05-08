@@ -10,11 +10,11 @@ interface MapperInterface
      * Creates default map
      *
      * @param string $sourceType
-     * @param string $destinationMap
+     * @param string $destinationType
      *
      * @return MapInterface
      */
-    public function create(string $sourceType, string $destinationMap): MapInterface;
+    public function create(string $sourceType, string $destinationType): MapInterface;
 
     /**
      * Adds map to mapper

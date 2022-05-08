@@ -17,6 +17,9 @@ use function is_string;
 
 final class Mapper implements MapperInterface
 {
+    /**
+     * @var MapInterface[][]
+     */
     private array $maps = [];
 
     private PropertyAccessor $accessor;
@@ -32,9 +35,9 @@ final class Mapper implements MapperInterface
         $this->guesser = new TypeGuesser($typeFilters);
     }
 
-    public function create(string $sourceType, string $destinationMap): MapInterface
+    public function create(string $sourceType, string $destinationType): MapInterface
     {
-        return $this->maps[$sourceType][$destinationMap] = new DefaultMap($sourceType, $destinationMap);
+        return $this->maps[$sourceType][$destinationType] = new DefaultMap($sourceType, $destinationType);
     }
 
     public function register(MapInterface $map): void
@@ -93,7 +96,7 @@ final class Mapper implements MapperInterface
                 $value = $filter->filter($value);
             }
 
-            if ($map->getSkipNull() && is_null($value)) {
+            if (is_null($value) && $map->getSkipNull()) {
                 continue;
             }
 
